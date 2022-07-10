@@ -1,8 +1,18 @@
-import './App.css';
+import './styles/App.css';
+
+import React from 'react'
+import Header from './components/Header';
+import Posts from './components/Docs';
 
 function App() {
 	return (
-		<div className="App">In progress...</div>
+		<div className="App">
+			<div className='wrapper'>
+				<Header />
+				<Posts />
+				In progress...
+			</div>
+		</div>
 	);
 }
 
