@@ -1,13 +1,13 @@
 import React from 'react'
 
-function Doc() {
+function Doc(props) {
   return (
     <div className='doc'>
       <div className='doc__title'>
-        <h4>Test article</h4>
+        <h4>{props.doc.title}</h4>
       </div>
       <div className='doc__content'>
-        <div>Бла-бла-бла</div>
+        <div>{props.doc.content}</div>
       </div>
     </div>
   )
