@@ -1,0 +1,195 @@
+.btn {
+	padding: 5px 16px;
+	font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid;
+    border-radius: 6px;
+
+	color: var(--color-btn-text);
+    background-color: var(--color-btn-bg);
+	
+	border-color: var(--color-btn-border);
+    box-shadow: var(--color-btn-shadow),
+		var(--color-btn-inset-shadow);
+	
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.btn:hover {
+	background-color: var(--color-btn-hover-bg);
+	border-color: var(--color-btn-hover-border);
+}
+
+.primary {
+	color: var(--color-btn-primary-text);
+	background-color: var(--color-btn-primary-bg);
+	border-color: var(--color-btn-primary-border);
+    box-shadow: var(--color-btn-primary-shadow),
+		var(--color-btn-primary-inset-shadow);
+}
+
+.primary:hover {
+	background-color: var(--color-btn-primary-hover-bg);
+    border-color: var(--color-btn-primary-hover-border);
+}
+
+
+
+
+@media (prefers-color-scheme: light) {
+	.btn {
+		color-scheme: light;
+		--color-btn-text: #24292f;
+		--color-btn-bg: #f6f8fa;
+		--color-btn-border: rgba(27,31,36,0.15);
+		--color-btn-shadow: 0 1px 0 rgba(27,31,36,0.04);
+		--color-btn-inset-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+		--color-btn-hover-bg: #f3f4f6;
+		--color-btn-hover-border: rgba(27,31,36,0.15);
+		--color-btn-active-bg: hsla(220,14%,93%,1);
+		--color-btn-active-border: rgba(27,31,36,0.15);
+		--color-btn-selected-bg: hsla(220,14%,94%,1);
+		--color-btn-focus-bg: #f6f8fa;
+		--color-btn-focus-border: rgba(27,31,36,0.15);
+		--color-btn-focus-shadow: 0 0 0 3px rgba(9,105,218,0.3);
+		--color-btn-shadow-active: inset 0 0.15em 0.3em rgba(27,31,36,0.15);
+		--color-btn-shadow-input-focus: 0 0 0 0.2em rgba(9,105,218,0.3);
+		--color-btn-counter-bg: rgba(27,31,36,0.08);
+		--color-btn-primary-text: #ffffff;
+		--color-btn-primary-bg: #2da44e;
+		--color-btn-primary-border: rgba(27,31,36,0.15);
+		--color-btn-primary-shadow: 0 1px 0 rgba(27,31,36,0.1);
+		--color-btn-primary-inset-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+		--color-btn-primary-hover-bg: #2c974b;
+		--color-btn-primary-hover-border: rgba(27,31,36,0.15);
+		--color-btn-primary-selected-bg: hsla(137,55%,36%,1);
+		--color-btn-primary-selected-shadow: inset 0 1px 0 rgba(0,45,17,0.2);
+		--color-btn-primary-disabled-text: rgba(255,255,255,0.8);
+		--color-btn-primary-disabled-bg: #94d3a2;
+		--color-btn-primary-disabled-border: rgba(27,31,36,0.15);
+		--color-btn-primary-focus-bg: #2da44e;
+		--color-btn-primary-focus-border: rgba(27,31,36,0.15);
+		--color-btn-primary-focus-shadow: 0 0 0 3px rgba(45,164,78,0.4);
+		--color-btn-primary-icon: rgba(255,255,255,0.8);
+		--color-btn-primary-counter-bg: rgba(255,255,255,0.2);
+		--color-btn-outline-text: #0969da;
+		--color-btn-outline-hover-text: #ffffff;
+		--color-btn-outline-hover-bg: #0969da;
+		--color-btn-outline-hover-border: rgba(27,31,36,0.15);
+		--color-btn-outline-hover-shadow: 0 1px 0 rgba(27,31,36,0.1);
+		--color-btn-outline-hover-inset-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+		--color-btn-outline-hover-counter-bg: rgba(255,255,255,0.2);
+		--color-btn-outline-selected-text: #ffffff;
+		--color-btn-outline-selected-bg: hsla(212,92%,42%,1);
+		--color-btn-outline-selected-border: rgba(27,31,36,0.15);
+		--color-btn-outline-selected-shadow: inset 0 1px 0 rgba(0,33,85,0.2);
+		--color-btn-outline-disabled-text: rgba(9,105,218,0.5);
+		--color-btn-outline-disabled-bg: #f6f8fa;
+		--color-btn-outline-disabled-counter-bg: rgba(9,105,218,0.05);
+		--color-btn-outline-focus-border: rgba(27,31,36,0.15);
+		--color-btn-outline-focus-shadow: 0 0 0 3px rgba(5,80,174,0.4);
+		--color-btn-outline-counter-bg: rgba(9,105,218,0.1);
+		--color-btn-danger-text: #cf222e;
+		--color-btn-danger-hover-text: #ffffff;
+		--color-btn-danger-hover-bg: #a40e26;
+		--color-btn-danger-hover-border: rgba(27,31,36,0.15);
+		--color-btn-danger-hover-shadow: 0 1px 0 rgba(27,31,36,0.1);
+		--color-btn-danger-hover-inset-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+		--color-btn-danger-hover-counter-bg: rgba(255,255,255,0.2);
+		--color-btn-danger-selected-text: #ffffff;
+		--color-btn-danger-selected-bg: hsla(356,72%,44%,1);
+		--color-btn-danger-selected-border: rgba(27,31,36,0.15);
+		--color-btn-danger-selected-shadow: inset 0 1px 0 rgba(76,0,20,0.2);
+		--color-btn-danger-disabled-text: rgba(207,34,46,0.5);
+		--color-btn-danger-disabled-bg: #f6f8fa;
+		--color-btn-danger-disabled-counter-bg: rgba(207,34,46,0.05);
+		--color-btn-danger-focus-border: rgba(27,31,36,0.15);
+		--color-btn-danger-focus-shadow: 0 0 0 3px rgba(164,14,38,0.4);
+		--color-btn-danger-counter-bg: rgba(207,34,46,0.1);
+		--color-btn-danger-icon: #cf222e;
+		--color-btn-danger-hover-icon: #ffffff;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	.btn {
+		color-scheme: dark;
+		--color-btn-text: #c9d1d9;
+		--color-btn-bg: #21262d;
+		--color-btn-border: rgba(240,246,252,0.1);
+		--color-btn-shadow: 0 0 transparent;
+		--color-btn-inset-shadow: 0 0 transparent;
+		--color-btn-hover-bg: #30363d;
+		--color-btn-hover-border: #8b949e;
+		--color-btn-active-bg: hsla(212,12%,18%,1);
+		--color-btn-active-border: #6e7681;
+		--color-btn-selected-bg: #161b22;
+		--color-btn-focus-bg: #21262d;
+		--color-btn-focus-border: #8b949e;
+		--color-btn-focus-shadow: 0 0 0 3px rgba(139,148,158,0.3);
+		--color-btn-shadow-active: inset 0 0.15em 0.3em rgba(1,4,9,0.15);
+		--color-btn-shadow-input-focus: 0 0 0 0.2em rgba(31,111,235,0.3);
+		--color-btn-counter-bg: #30363d;
+		--color-btn-primary-text: #ffffff;
+		--color-btn-primary-bg: #238636;
+		--color-btn-primary-border: rgba(240,246,252,0.1);
+		--color-btn-primary-shadow: 0 0 transparent;
+		--color-btn-primary-inset-shadow: 0 0 transparent;
+		--color-btn-primary-hover-bg: #2ea043;
+		--color-btn-primary-hover-border: rgba(240,246,252,0.1);
+		--color-btn-primary-selected-bg: #238636;
+		--color-btn-primary-selected-shadow: 0 0 transparent;
+		--color-btn-primary-disabled-text: rgba(255,255,255,0.5);
+		--color-btn-primary-disabled-bg: rgba(35,134,54,0.6);
+		--color-btn-primary-disabled-border: rgba(240,246,252,0.1);
+		--color-btn-primary-focus-bg: #238636;
+		--color-btn-primary-focus-border: rgba(240,246,252,0.1);
+		--color-btn-primary-focus-shadow: 0 0 0 3px rgba(46,164,79,0.4);
+		--color-btn-primary-icon: #ffffff;
+		--color-btn-primary-counter-bg: rgba(255,255,255,0.2);
+		--color-btn-outline-text: #58a6ff;
+		--color-btn-outline-hover-text: #58a6ff;
+		--color-btn-outline-hover-bg: #30363d;
+		--color-btn-outline-hover-border: rgba(240,246,252,0.1);
+		--color-btn-outline-hover-shadow: 0 1px 0 rgba(1,4,9,0.1);
+		--color-btn-outline-hover-inset-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+		--color-btn-outline-hover-counter-bg: rgba(255,255,255,0.2);
+		--color-btn-outline-selected-text: #ffffff;
+		--color-btn-outline-selected-bg: #0d419d;
+		--color-btn-outline-selected-border: rgba(240,246,252,0.1);
+		--color-btn-outline-selected-shadow: 0 0 transparent;
+		--color-btn-outline-disabled-text: rgba(88,166,255,0.5);
+		--color-btn-outline-disabled-bg: #0d1117;
+		--color-btn-outline-disabled-counter-bg: rgba(31,111,235,0.05);
+		--color-btn-outline-focus-border: rgba(240,246,252,0.1);
+		--color-btn-outline-focus-shadow: 0 0 0 3px rgba(17,88,199,0.4);
+		--color-btn-outline-counter-bg: rgba(31,111,235,0.1);
+		--color-btn-danger-text: #f85149;
+		--color-btn-danger-hover-text: #ffffff;
+		--color-btn-danger-hover-bg: #da3633;
+		--color-btn-danger-hover-border: #f85149;
+		--color-btn-danger-hover-shadow: 0 0 transparent;
+		--color-btn-danger-hover-inset-shadow: 0 0 transparent;
+		--color-btn-danger-hover-icon: #ffffff;
+		--color-btn-danger-hover-counter-bg: rgba(255,255,255,0.2);
+		--color-btn-danger-selected-text: #ffffff;
+		--color-btn-danger-selected-bg: #b62324;
+		--color-btn-danger-selected-border: #ff7b72;
+		--color-btn-danger-selected-shadow: 0 0 transparent;
+		--color-btn-danger-disabled-text: rgba(248,81,73,0.5);
+		--color-btn-danger-disabled-bg: #0d1117;
+		--color-btn-danger-disabled-counter-bg: rgba(218,54,51,0.05);
+		--color-btn-danger-focus-border: #f85149;
+		--color-btn-danger-focus-shadow: 0 0 0 3px rgba(248,81,73,0.4);
+		--color-btn-danger-counter-bg: rgba(218,54,51,0.1);
+		--color-btn-danger-icon: #f85149;
+		--color-underlinenav-icon: #6e7681;
+	}
+}

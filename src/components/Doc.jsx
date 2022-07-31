@@ -1,43 +1,40 @@
-import axios from 'axios';
 import React, { useState } from 'react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import DocService from '../API/DocService';
 
-function Doc({doc}) {
+function Doc({doc, ...props}) {
 
 	const [docContent, setDocContent] = useState('')
+	const [btnName, setBtnName] = useState('More...');
+	const listReadMeFiles = ["readme.md", "Readme.md", "README.md"]
 
-	function getContentFromDoc() {
-		axios.get(
-			doc.url + "/contents" + "/readme.md"
-		).then(
-			response => {
-				console.log('We got it!');
-				setDocContent(atob(response.data.content))
-			},
-			error => {
-				console.log('Ops, something is wrong...');
-				setDocContent('There is no "readme" file...')
+	async function getContentFromDoc() {
+		setBtnName((btnName === 'More...') ? 'Less' : 'More...');
+		const doc_content = document.getElementById(doc.id);
+		if (doc_content.getAttribute('requested') == null) {
+			for (let i = 0; i < listReadMeFiles.length; i++){
+				const responce = await DocService.getDocInfo(
+					doc.url + "/contents/" + listReadMeFiles[i]
+				);
+				if (responce) setDocContent(responce);
 			}
-		)
-			
-		//   return atob(response.data.content)
-		// } ca (error) {
-		//   return 'There is no "readme" file...'
-		// }
+			doc_content.toggleAttribute('requested');
+		} else doc_content.toggleAttribute('isHide');
 	}
 
 	return (
-		<div className='doc'>
+		<div className='doc' id={doc.id}>
 			<div className='doc__title'>
-				<h4>{doc.name}</h4>
-				<h5>{doc.url}</h5>
-				<button onClick={()=>getContentFromDoc()}>Loh</button>
+				<div className='doc__name'>{doc.name}</div>
+				<button onClick={()=>getContentFromDoc()}>{btnName}</button>
 			</div>
-			<div>
-				{docContent
-					? <div className='doc__content'><div>{docContent}</div></div>
-					: <div></div>
-				}
-			</div>
+			{docContent
+				? <div className='doc__content markdown-body dark-scheme'>
+						<ReactMarkdown children={docContent} remarkPlugins={[remarkGfm]} />
+					</div>
+				: <div></div>
+			}
 		</div>
 	)
 }

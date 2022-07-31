@@ -1,0 +1,49 @@
+.myInput {
+	/* display: table-cell; */
+	/* display: table; */
+    /* width: 100%; */
+    /* max-width: 100%; */
+    /* font-size: inherit; */
+    padding: 5px 12px;
+    font-weight: 400;
+    vertical-align: middle;
+    color: var(--color-scale-white);
+    background-color: var(--color-header-search-bg);
+    border: 1px solid var(--color-header-search-border);
+	border-radius: 6px;
+    box-shadow: none;
+}
+
+
+
+
+
+@media (prefers-color-scheme: light) {
+	.myInput {
+		color-scheme: light;
+		--color-header-text: rgba(255,255,255,0.7);
+		--color-header-bg: #24292f;
+		--color-header-divider: #57606a;
+		--color-header-logo: #ffffff;
+		/* --color-header-search-bg: #24292f; */
+		--color-header-search-bg: rgba(255,255,255,0.7);
+		--color-header-search-border: #57606a;
+		--color-sidenav-selected-bg: #ffffff;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	.myInput {
+		color-scheme: dark;
+		--color-header-text: rgba(255,255,255,0.7);
+		--color-header-bg: #161b22;
+		--color-header-divider: #8b949e;
+		--color-header-logo: #f0f6fc;
+		--color-header-search-bg: #0d1117;
+		--color-header-search-border: #30363d;
+		--color-sidenav-selected-bg: #21262d;
+		--color-menu-bg-active: #161b22;
+		--color-input-disabled-bg: rgba(110,118,129,0);
+		--color-timeline-badge-bg: #21262d;
+	}
+}

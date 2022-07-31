@@ -1,6 +1,6 @@
-import "../styles/Docs.css"
+import "../styles/DocList.css"
 
-import React, { useState } from 'react'
+// import React, { useState } from 'react'
 import Doc from "./Doc"
 
 function Docs({docs}) {
@@ -8,7 +8,7 @@ function Docs({docs}) {
 	return (
 		<div className="docs">
 			<h3 style={{display: 'flex', justifyContent: 'center'}}>Доки:</h3>
-			{docs.map(doc => <Doc 	doc={doc} key={doc.id} />)}
+			{docs.map(doc => <Doc doc={doc} key={doc.id} />)}
 		</div>
 	)
 }
