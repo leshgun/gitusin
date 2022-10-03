@@ -1,33 +1,37 @@
 import emojione from 'emojione';
 import MyRequest from '../utils/MyRequest';
 
-// It should be deleted in release!!!
-const personalToken = "";
+var Buffer = require('buffer/').Buffer
+
+function base64ToUtf8(data) {
+	return Buffer.from(data, 'base64').toString()
+}
 
 export default class DocService {
+
+	static async getRepo(repo) {
+		return await MyRequest.GET({
+			url: `/repos/${repo}`
+		});
+	}
+
 	static async getDocList(username) {
 		return MyRequest.GET({
-			url: `https://api.github.com/users/${username}/repos`,
-			name: 'Leshgun',
-			pat: personalToken
+			url: `/users/${username}/repos`
 		})
 	}
 
-	static async getDocInfo(docURL) {
+	static async getDoc(docName) {
 		try {
-			let response = await MyRequest.GET({url: docURL});
-			console.log('Response:\n', response);
-			response = response.content.split('\n').reduce(
-				(x,y) => x + emojione.shortnameToImage(atob(y)), ''
-			)
+			let response = await MyRequest.GET({
+				url: `/repos/${docName}`,
+			});
+			response = response.content.replace('\n', '');
+			response = base64ToUtf8(response);
+			response = emojione.shortnameToImage(response);
 			return response ? response : null;
-			// return response 
-			// 	? response.content.split('\n').reduce(
-			// 		(x,y) => x + emojione.shortnameToImage(atob(y)), ''
-			// 	)
-			// 	: null;
 		} catch (e) {
-			console.log(e);
+			// console.log('Request error: ', e);
 		}
 	}
 }

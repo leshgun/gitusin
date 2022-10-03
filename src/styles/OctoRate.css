@@ -1,0 +1,13 @@
+#octo_rate {
+	position: fixed;
+	cursor: default;
+	right: 0;
+	bottom: 0;
+	padding: 0.5rem 1rem;
+	background-color: gainsboro;
+	opacity: 25%;
+}
+
+#octo_rate:hover {
+	opacity: 100%;
+}

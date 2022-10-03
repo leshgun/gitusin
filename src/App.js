@@ -5,10 +5,12 @@ import React, { useEffect, useState } from 'react'
 
 import Header from './components/Header';
 import Docs from './components/DocList';
+import OctoRate from './components/OctoRate';
 import './styles/App.css';
 import './styles/Header.css';
 import "../node_modules/github-markdown-css/github-markdown.css"
 import DocService from './API/DocService';
+import {initTime} from './utils/myPrint';
 
 const defaultUser = 'leshgun'
 
@@ -18,11 +20,12 @@ function App() {
 
 	useEffect(() => {
 		fetchDocs(defaultUser);
+		initTime();
 	}, []);
 
 	async function fetchDocs(username) {
 		const response = await DocService.getDocList(username);
-		setDocs(response)
+		if (response) setDocs(response)
 	}
 
 	function changeUser(username) {
@@ -32,10 +35,14 @@ function App() {
 
 	return (
 		<div className="App">
-			<Header changeUser={changeUser} />
+			<Header 
+				changeUser={changeUser}
+				defaultUser={defaultUser}
+			/>
 			<div className='wrapper'>
 				<Docs docs={docs}/>
 			</div>
+			<OctoRate></OctoRate>
 		</div>
 	);
 }

@@ -22,11 +22,19 @@
   padding: 45px;
 }
 
-@media (max-width: 767px) {
+@media screen and (max-width: 1000px) {
+  .wrapper {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 767px) {
   .markdown-body {
     padding: 15px;
   }
 }
+
+
 
 
 

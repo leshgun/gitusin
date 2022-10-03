@@ -25,12 +25,13 @@
 
 .doc__title {
   width: 100%;
-  min-height: 3rem;
+  min-height: 5rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   padding: 1rem 2rem;
+  gap: 1rem;
 }
 
 .doc__title button {
@@ -47,3 +48,23 @@
   flex-grow: 1;
 }
 
+
+
+/* ==================== MEDIA ==================== */
+
+@media screen and (max-width: 500px) {
+  .doc__title {
+    flex-direction: column;
+  } 
+  .doc__title >* {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 250px) {
+  .doc__title {
+    flex-direction: column;
+    padding: 0;
+  } 
+}
