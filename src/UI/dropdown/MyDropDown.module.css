@@ -1,19 +1,23 @@
+.dropdown {
+	display: none;
+}
+
 .dropdown__content {
 	position: absolute;
 }
 
-i {
-	margin-right: .5rem;
+.active {
+	display: block;
 }
 
-ul::before, ul::after {
+.dropdown__content::before, .dropdown__content::after {
 	position: absolute;
 	display: inline-block;
 	content: "";
 }
 
 
-ul::before {
+.dropdown__content::before {
 	top: -16px;
 	left: 9px;
 	right: auto;
@@ -21,7 +25,7 @@ ul::before {
 	border-bottom-color: var(--color-border-default);
 }
 
-ul::after {
+.dropdown__content::after {
 	top: -14px;
 	left: 10px;
 	right: auto;
@@ -30,7 +34,7 @@ ul::after {
 }
 
 
-ul {
+.dropdown__content {
 	font-size: 14px;
 	line-height: 1.5;
 	color: var(--color-fg-default);
@@ -68,13 +72,13 @@ ul {
 	background-color: var(--color-accent-emphasis);
 }
 
-li {
+.dropdown__content li {
 	width: 100%;
 	background-color: transparent;
 	border: 0;
 }
 
-li >* {
+.dropdown__content li >* {
 	width: 100%;
 	padding: 4px 8px 4px 16px;
 	text-align: left;

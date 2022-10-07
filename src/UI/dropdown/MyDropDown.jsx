@@ -1,22 +1,24 @@
 import React from 'react'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-
-import MyButton from '../button/MyButton';
-
 import classes from './MyDropDown.module.css'
 
 function MyDropDown({
 	children=[<span key={'example'}>Example</span>], 
 	className='',
-	position='down',
+	visible=false,
+	setVisible,
 	...props
 }) {
 
+	const rootClasses = [classes['dropdown'], className];
+
+	if (visible) {
+		rootClasses.push(classes['active'])
+	}
+
 	return (
 		<div
-			className={'dropdown' + ' ' + className}
+			className={rootClasses.join(' ')}
 			{...props}
 		>
 			<ul 
