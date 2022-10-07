@@ -1,11 +1,15 @@
-import "../styles/Header.css"
-
 import React, { useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 // import styles to be used (solid, regular, brands)
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {solid} from '@fortawesome/fontawesome-svg-core/import.macro'
+
 import MyButton from "../UI/button/MyButton"
 import MyInput from "../UI/input/MyInput"
+import MyDropDown from "../UI/dropdown/MyDropDown"
+
+import "../styles/Header.css"
+
 
 function Header({changeUser, defaultUser}, ...props) {
 
@@ -25,9 +29,15 @@ function Header({changeUser, defaultUser}, ...props) {
 		switchUser();
 	}
 
+	function openDropDown(id) {
+		const parent = document.getElementById(id);
+		const dd = parent.getElementsByClassName('dropdown')[0];
+		dd.classList.toggle('open');
+	}
+
 	return (
 		<header>
-			<form onSubmit={onFormSubmit}>
+			<div className="header__left-side">
 				<div className="home">
 					<FontAwesomeIcon 
 						icon={solid('house-chimney')}
@@ -35,14 +45,27 @@ function Header({changeUser, defaultUser}, ...props) {
 						onClick={() => switchUser(defaultUser)}
 					/>
 				</div>
-				<div className="user-name_input">
-					{/* <h5>User:</h5> */}
-					{/* <input 
-						placeholder={user} 
-						type="text"
-						title="Choose user to get info about"
-						onChange={e => setUser(e.target.value)}
-					/> */}
+				<div id="settings">
+					<MyButton 
+						addClasses='secondary'
+						type='submit'
+						onClick={() => openDropDown('settings')}
+					>
+						<i><FontAwesomeIcon icon={solid("caret-down")} size="xs" /></i>
+						Settings
+					</MyButton>
+					<MyDropDown>
+						<div id={'pat'} key={'pat'}>
+							<span>PAT</span>
+						</div>
+						<span key={'theme'}>PAT 2</span>
+						<span>Test</span>
+						{/* <span>PAT 3</span> */}
+					</MyDropDown>
+				</div>
+			</div>
+			<div className="header__right-side">
+				<form onSubmit={onFormSubmit}>
 					<MyInput 
 						placeholder={user}
 						type="text"
@@ -56,8 +79,8 @@ function Header({changeUser, defaultUser}, ...props) {
 						type='submit'
 						// onClick={() => switchUser()}
 					>Get</MyButton>
-				</div>
-			</form>
+				</form>
+			</div>
 		</header>
 	)
 }

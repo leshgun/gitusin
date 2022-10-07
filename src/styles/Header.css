@@ -4,15 +4,29 @@ header {
   width: 100%;
 }
 
-form {
+header {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
   padding: 1rem 2rem;
+}
+
+.dropdown {
+  display: none;
+}
+
+.open {
+	display: block;
+}
+
+.header__left-side {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 2rem;
 }
 
 .home {
@@ -25,7 +39,7 @@ form {
   cursor: pointer;
 }
 
-.user-name_input {
+.header__right-side form {
   height: 100%;
   /* border: 1px solid rgb(66,66,66); */
   display: flex;

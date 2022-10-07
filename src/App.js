@@ -19,7 +19,7 @@ function App() {
 	const [docs, setDocs] = useState([]);
 
 	useEffect(() => {
-		fetchDocs(defaultUser);
+		// fetchDocs(defaultUser);
 		initTime();
 	}, []);
 
