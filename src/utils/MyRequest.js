@@ -1,18 +1,15 @@
 import axios from "axios";
 import { Octokit } from 'octokit';
-// import mprint from "./myPrint";
+import mprint from "./myPrint";
 
 
 const githubAPI = 'https://api.github.com'
-const pat = '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';
-
-
 
 
 class MyOcto {
 	
 	static octokitRequestOptions = {
-		// auth: pat
+		auth: localStorage.getItem('pat') || ''
 	};
 	static octokit = new Octokit ({
 		...this.octokitRequestOptions
@@ -38,13 +35,14 @@ class MyOcto {
 		)
 		.catch(
 			err => {
-				console.log('--- Error:', err);
+				mprint('Error:', err);
 			}
 		)
-		this.setRate({
-			used: response.headers['x-ratelimit-used'],
-			limit: response.headers['x-ratelimit-limit']
-		})
+		if (response)
+			this.setRate({
+				used: response.headers['x-ratelimit-used'],
+				limit: response.headers['x-ratelimit-limit']
+			})
 		return response ? response.data : null;
 	}
 
@@ -60,7 +58,7 @@ export class MyAxios {
 		responseEncoding: 'utf8',
 		headers: {
 			Accept: 'application/vnd.github+json',
-			Authorization: `token ${pat}`
+			Authorization: `token ${localStorage.getItem('pat')}`
 		}
 	}
 

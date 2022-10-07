@@ -19,7 +19,7 @@ function App() {
 	const [docs, setDocs] = useState([]);
 
 	useEffect(() => {
-		// fetchDocs(defaultUser);
+		fetchDocs(defaultUser);
 		initTime();
 	}, []);
 
@@ -42,7 +42,10 @@ function App() {
 			<div className='wrapper'>
 				<Docs docs={docs}/>
 			</div>
-			<OctoRate></OctoRate>
+			{ localStorage.getItem('OctoRate')
+				? <OctoRate></OctoRate>
+				: <div></div>
+			}
 		</div>
 	);
 }

@@ -19,6 +19,10 @@
   align-items: center;
 }
 
+.doc a {
+  color: black;
+}
+
 .doc[isHide] .doc__content {
   display: none;
 }
