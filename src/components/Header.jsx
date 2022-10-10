@@ -80,7 +80,10 @@ function Header({changeUser, defaultUser, ...props}) {
 						type='submit'
 						onClick={() => toggleVisible(options, setOptions)}
 					>
-						<i><FontAwesomeIcon icon={solid("caret-down")} size="xs" /></i>
+						<div className='dd__button'>
+							Options
+							<i><FontAwesomeIcon icon={solid("caret-down")} size="xs" /></i>
+						</div>
 					</MyButton>
 					<MyDropDown
 						visible={options}
