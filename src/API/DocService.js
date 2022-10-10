@@ -1,4 +1,5 @@
 import emojione from 'emojione';
+import mprint from '../utils/myPrint';
 import MyRequest from '../utils/MyRequest';
 
 var Buffer = require('buffer/').Buffer
@@ -10,13 +11,14 @@ function base64ToUtf8(data) {
 export default class DocService {
 
 	static async getRepo(repo) {
-		return await MyRequest.GET({
+		const response = await MyRequest.GET({
 			url: `/repos/${repo}`
 		});
+		return response.data || response.error;
 	}
 
 	static async getDocList(username) {
-		return MyRequest.GET({
+		return await MyRequest.GET({
 			url: `/users/${username}/repos`
 		})
 	}
@@ -26,7 +28,7 @@ export default class DocService {
 			let response = await MyRequest.GET({
 				url: `/repos/${docName}`,
 			});
-			response = response.content.replace('\n', '');
+			response = response.data.content.replace('\n', '');
 			response = base64ToUtf8(response);
 			response = emojione.shortnameToImage(response);
 			return response ? response : null;

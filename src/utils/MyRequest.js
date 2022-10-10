@@ -35,15 +35,15 @@ class MyOcto {
 		)
 		.catch(
 			err => {
-				mprint('Error:', err);
+				return {error: err}
 			}
 		)
-		if (response)
+		if (response && !response.error)
 			this.setRate({
 				used: response.headers['x-ratelimit-used'],
 				limit: response.headers['x-ratelimit-limit']
 			})
-		return response ? response.data : null;
+		return response ? response : null;
 	}
 
 }
