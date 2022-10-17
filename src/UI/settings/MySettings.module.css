@@ -1,0 +1,23 @@
+.center, .title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  }
+  
+  .flex-row, .fl-fd-c {
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .flex-justify-sb, .fl-jc-sb {
+	display: flex;
+	justify-content: space-between;
+  }
+  
+  .gap-1 {
+	gap: 1rem;
+  }
+  
+  .gap-2 {
+	gap: 2rem;
+  }
