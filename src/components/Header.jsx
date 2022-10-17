@@ -7,22 +7,18 @@ import {solid} from '@fortawesome/fontawesome-svg-core/import.macro'
 import MyButton from "../UI/button/MyButton"
 import MyInput from "../UI/input/MyInput"
 import MyDropDown from "../UI/dropdown/MyDropDown"
-import MyModal from '../UI/modal/MyModal'
 
-import mprint from '../utils/myPrint'
+import {onFormSubmit, toggleVisible} from '../utils/MyTools'
 
 import "../styles/Header.css"
+import MySettings from '../UI/settings/MySettings'
 
 
-function Header({changeUser, defaultUser, ...props}) {
+function Header({user, setUser, defaultUser='leshgun'}) {
 
-	const [user, setUser] = useState(defaultUser);
 	const [inputValue, setInputValue] = useState('');
 	const [options, setOptions] = useState(false);
 	const [settings, setSettings] = useState(false);
-	const [pat, setPat] = useState('');
-
-	const defaultPat = 'ghp_88005553535';
 
 	useEffect(() => {
 		if (!localStorage.getItem('pat'))
@@ -37,32 +33,10 @@ function Header({changeUser, defaultUser, ...props}) {
 	function switchUser(newUser=inputValue) {
 		if (newUser && newUser !== user) {
 			setUser(newUser)
-			changeUser(newUser);
+			// changeUser(newUser);
 			setInputValue('');
 		}
 	}
-
-	function changePat() {
-		mprint('New PAT:', pat);
-		localStorage.setItem('pat', pat);
-		setPat('');
-		setSettings(false);
-	}
-
-	function onFormSubmit(e, callback) {
-		e.preventDefault();
-		callback();
-	}
-
-	function toggleVisible(state, callback) {
-		callback(!state);
-	}
-
-	// function openDropDown(id) {
-		// const parent = document.getElementById(id);
-		// const dd = parent.getElementsByClassName('dropdown')[0];
-		// dd.classList.toggle('open');
-	// }
 
 	return (
 		<header>
@@ -102,24 +76,11 @@ function Header({changeUser, defaultUser, ...props}) {
 							onClick={() => clearStorage()}
 						>refresh</span>
 					</MyDropDown>
-					<MyModal visible={settings} setVisible={setSettings}>
-						<div className='fl-fd-c gap-1'>
-							<div className='title'>Настройки</div>
-							<div className='content'>
-								<form onSubmit={(e) => onFormSubmit(e, changePat)}>
-									<div className='fl-jc-sb'>
-										<div>PAT:</div>
-										<MyInput
-											placeholder={localStorage.getItem('pat') || defaultPat}
-											type='text'
-											title='Enter your personal acsess token here'
-											onChange={e => setPat(e.target.value)}
-										/>
-									</div>
-								</form>
-							</div>
-						</div>
-					</MyModal>
+					<MySettings
+						key='settings'
+						settings={settings}
+						setSettings={setSettings}
+					/>
 				</div>
 			</div>
 			<div className="header__right-side">

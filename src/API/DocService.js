@@ -1,5 +1,4 @@
 import emojione from 'emojione';
-import mprint from '../utils/myPrint';
 import MyRequest from '../utils/MyRequest';
 
 var Buffer = require('buffer/').Buffer
@@ -11,10 +10,9 @@ function base64ToUtf8(data) {
 export default class DocService {
 
 	static async getRepo(repo) {
-		const response = await MyRequest.GET({
+		return await MyRequest.GET({
 			url: `/repos/${repo}`
 		});
-		return response.data || response.error;
 	}
 
 	static async getDocList(username) {

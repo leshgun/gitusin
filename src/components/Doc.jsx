@@ -27,10 +27,13 @@ function Doc({doc, ...props}) {
 		let response = await DocService.getRepo (
 			doc.full_name + "/contents/"
 		);
-		if (!response) return null;
-		response = response.map((x) => x.name);
-		mprint('Docs found:', response);
-		response = response.filter((x) => regex.test(x))
+		if (response.data) {
+			response = response.data.map((x) => x.name);
+			mprint('Docs found:', response);
+			response = response.filter((x) => regex.test(x))
+		} else {
+			response = null;
+		}
 		// console.log('Docs filtered:', response);
 		return response
 	}
