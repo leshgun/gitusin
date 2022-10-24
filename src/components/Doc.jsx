@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import DocService from '../API/DocService';
 import MyButton from '../UI/button/MyButton';
+import MyLoading from '../UI/loading/MyLoading';
 import docFormat from '../utils/docFormat';
 import mprint from '../utils/myPrint';
 
@@ -11,6 +12,7 @@ function Doc({doc, ...props}) {
 	const [docContent, setDocContent] = useState('');
 	const [btnName, setBtnName] = useState('More...');
 	const [btnHide, setBtnHide] = useState(false);
+	const [docContentHide, setDocContentHide] = useState(true);
 
 	async function getData(path) {
 		let response = await DocService.getDoc(
@@ -39,23 +41,32 @@ function Doc({doc, ...props}) {
 	}
 
 	async function getContentFromDoc() {
-		const doc_content = document.getElementById(doc.id);
+		const docEl = document.getElementById(doc.id);
 		
-		if (doc_content.getAttribute('requested') == null) {
-			doc_content.toggleAttribute('requested');
+		if (docEl.getAttribute('requested') == null) {
+			docEl.toggleAttribute('requested');
 			setBtnHide(true);
 			const docs = await findDocs();
 			if (docs && docs.length) {
-				getData(docs[0]);
+				await getData(docs[0]);
 				setBtnHide(false);
+				setDocContentHide(!docContentHide);
 			}
-			// console.log('--- Docs:', docs);
-		} else doc_content.toggleAttribute('isHide');
+		} else {
+			setDocContentHide(!docContentHide);
+			if (!docContentHide && window.pageYOffset > docEl.offsetTop)
+				window.scrollTo(0, docEl.offsetTop - 16);
+		}
 		setBtnName((btnName === 'More...') ? 'Less' : 'More...');
 	}
 
 	return (
-		<div className='doc' id={doc.id}>
+		<div className='doc' id={doc.id} isconthide={docContentHide ? "true" : "false"}>
+			{/* <div className='sticky'>
+				<div className='sticky__child'>
+					<p>Loh...</p>
+				</div>
+			</div> */}
 			<div className='doc__title'>
 				<a
 					target="_blank"
@@ -66,7 +77,7 @@ function Doc({doc, ...props}) {
 				{/* <button onClick={()=>getContentFromDoc()}>{btnName}</button> */}
 				{
 					btnHide
-						? 	<div className='outline'></div>
+						? 	<MyLoading size='md'/>
 						: 	<MyButton 
 								addClasses='outline' 
 								onClick={()=>getContentFromDoc()}
@@ -74,13 +85,12 @@ function Doc({doc, ...props}) {
 								{btnName}
 							</MyButton>
 				}
-				
 			</div>
-			{docContent
-				? <div className='doc__content markdown-body dark-scheme'>
+			{docContentHide
+				? <div className='doc__content'></div>
+				: <div className='doc__content markdown-body dark-scheme'>
 						<ReactMarkdown children={docContent} remarkPlugins={[remarkGfm]} />
 					</div>
-				: <div></div>
 			}
 		</div>
 	)
