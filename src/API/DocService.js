@@ -9,6 +9,10 @@ function base64ToUtf8(data) {
 
 export default class DocService {
 
+	static getRate() {
+		return MyRequest.getRate();
+	}
+
 	static async getRepo(repo) {
 		return await MyRequest.GET({
 			url: `/repos/${repo}`

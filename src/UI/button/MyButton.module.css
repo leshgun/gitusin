@@ -43,7 +43,7 @@
 
 
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
 	.btn {
 		color-scheme: light;
 		--color-btn-text: #24292f;
@@ -192,4 +192,4 @@
 		--color-btn-danger-icon: #f85149;
 		--color-underlinenav-icon: #6e7681;
 	}
-}
+} */

@@ -27,7 +27,7 @@
 }
 
 .doc a {
-  color: black;
+  color: var(--color-fg-default);
 }
 
 /* .doc[isHide] .doc__title {
@@ -44,8 +44,10 @@
 
 .doc__title {
   width: 100%;
-  height: var(--title-height);
+  min-height: var(--title-height);
   padding: var(--title-padding) calc(var(--title-padding)*2);
+  background-color: var(--color-canvas-default);
+  color: #fff;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -53,9 +55,8 @@
   gap: 1rem;
 
   position: sticky;
-  top: 0;
+  top: -4px;
   border-radius: inherit;
-  background-color: white;
 }
 
 .cover {
@@ -70,11 +71,19 @@
   align-items: center;
 }
 
+.doc__title .doc__name {
+  justify-content: left;
+}
+
 .doc__content {
   /* border: 1.5px dashed rgb(53, 122, 190); */
   border-radius: inherit;
   width: 100%;
   flex-grow: 1;
+}
+
+.markdown-body {
+  padding: 3rem;
 }
 
 

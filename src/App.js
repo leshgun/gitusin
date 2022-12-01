@@ -11,32 +11,44 @@ import "../node_modules/github-markdown-css/github-markdown.css"
 import {initTime} from './utils/myPrint';
 
 const defParams = {
+	defaultError: <h2>O-o-ops, something went wrong...</h2>,
 	defaultUser: 'leshgun',
-	defaultError: <h2>O-o-ops, something went wrong...</h2>
+	octoRate: ''
 };
 
 function App() {
 
 	const [user, setUser] = useState(defParams.defaultUser);
+	const [rate, setRate] = useState('');
+	const [theme, setTheme] = useState('light')
 
 	useEffect(() => {
 		initTime();
 	}, []);
 
+	useEffect(() => {
+		localStorage.setItem("theme", theme)
+		document.getElementById("App").setAttribute("theme", theme)
+	}, [theme])
+
 	return (
-		<div className="App">
-			<MyContext.Provider value={defParams}>
-				<Header 
-					user={user}
-					setUser={setUser}
+		<div id="App">
+			<MyContext.Provider value={{
+				rate: rate,
+				setRate: (r) => setRate(r),
+				...defParams
+			}}>
+				<Header
+					stateUser={[user, setUser]}
+					stateTheme={[theme, setTheme]}
 				/>
 				<div className='wrapper'>
 					<Docs
 						user={user}
 					/>
 				</div>
-				{localStorage.getItem('OctoRate')
-					? <OctoRate></OctoRate>
+				{rate
+					? <OctoRate rate={rate} setRate={setRate}></OctoRate>
 					: <div></div>
 				}
 			</MyContext.Provider>

@@ -11,7 +11,8 @@
 
 .myModal__content {
 	padding: 1.5rem;
-	background: white;
+	background: var(--color-canvas-default);
+	color: var(--color-fg-default);
 	border-radius: 2rem;
 	min-width: 300px;
 	cursor: default;

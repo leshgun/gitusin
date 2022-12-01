@@ -14,7 +14,7 @@ function Docs({user}) {
 	const [docs, setDocs] = useState([]);
 	const [requestError, setRequestError] = useState(false);
 
-	const {defError} = useContext(MyContext);
+	const {setRate, defError} = useContext(MyContext);
 
 	const loading = <MyLoading />;
 
@@ -23,6 +23,7 @@ function Docs({user}) {
 			setDocs([]);
 			setRequestError(false);
 			const response = await DocService.getDocList(user);
+			setRate(localStorage.getItem('OctoRate') || '')
 			if (response.data) {
 				if (response.data.length) setDocs(response.data);
 				setRequestError(<h5>There is no public repos...</h5>)
@@ -30,8 +31,8 @@ function Docs({user}) {
 			else {
 				setRequestError(
 					<MyError response={response} />
-				);
-			}
+					);
+				}
 		}
 		fetchDocs(user);
 	}, [user])

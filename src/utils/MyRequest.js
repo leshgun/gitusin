@@ -11,12 +11,14 @@ class MyOcto {
 	static octokitRequestOptions = {
 		auth: localStorage.getItem('pat') || ''
 	};
+
 	static octokit = new Octokit ({
 		...this.octokitRequestOptions
 	})
 
 	static async setRate(rate) {
-		localStorage.setItem('OctoRate', `${rate.used}/${rate.limit}`);
+		const newRate = `${rate.used}/${rate.limit}`
+		localStorage.setItem('OctoRate', newRate);
 	}
 
 	static async getRate() {

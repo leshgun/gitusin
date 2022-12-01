@@ -1,6 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+
+import { MyContext } from '../App';
 import DocService from '../API/DocService';
 import MyButton from '../UI/button/MyButton';
 import MyLoading from '../UI/loading/MyLoading';
@@ -13,6 +16,7 @@ function Doc({doc, ...props}) {
 	const [btnName, setBtnName] = useState('More...');
 	const [btnHide, setBtnHide] = useState(false);
 	const [docContentHide, setDocContentHide] = useState(true);
+	const {setRate} = useContext(MyContext)
 
 	async function getData(path) {
 		let response = await DocService.getDoc(
@@ -22,6 +26,7 @@ function Doc({doc, ...props}) {
 			response = docFormat(doc, response);
 			if (response) setDocContent(response);
 		}
+		setRate(localStorage.getItem('OctoRate') || '')
 	}
 
 	async function findDocs() {
@@ -37,6 +42,7 @@ function Doc({doc, ...props}) {
 			response = null;
 		}
 		// console.log('Docs filtered:', response);
+		setRate(localStorage.getItem('OctoRate') || '')
 		return response
 	}
 

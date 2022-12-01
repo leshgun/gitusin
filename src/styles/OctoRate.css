@@ -4,7 +4,8 @@
 	right: 0;
 	bottom: 0;
 	padding: 0.5rem 1rem;
-	background-color: gainsboro;
+	background-color: var(--color-checks-btn-icon);
+	color: var(--color-fg-default);
 	opacity: 25%;
 }
 

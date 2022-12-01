@@ -15,7 +15,7 @@ header {
   padding: 1rem 2rem;
 }
 
-.header__left-side {
+.header__left-side, .header__right-side {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -37,25 +37,36 @@ header {
   gap: .5rem;
 }
 
+.dark_theme {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .header__right-side form {
   height: 100%;
   /* border: 1px solid rgb(66,66,66); */
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 2rem;
 }
 
 /* ==================== MEDIA ==================== */
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   header {
     flex-direction: column;
     gap: 1rem;
   }
+  .header__right-side {
+    width: 100%;
+  }
   .header__right-side form {
-    flex-direction: column;
-    justify-content: space-around;
-    gap: 1rem;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .header__right-side input {
     width: 100%;
   }
   .user-name_input >* {
