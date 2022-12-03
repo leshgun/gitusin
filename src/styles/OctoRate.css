@@ -1,12 +1,14 @@
 #octo_rate {
 	position: fixed;
 	cursor: default;
-	right: 0;
+	right: 10px;
 	bottom: 0;
 	padding: 0.5rem 1rem;
-	background-color: var(--color-checks-btn-icon);
-	color: var(--color-fg-default);
-	opacity: 25%;
+	/* background-color: var(--color-checks-btn-icon); */
+	background-color: var(--color-scrollbar-background);
+	/* color: var(--color-fg-default); */
+	color: var(--color-thumb-background-active);
+	opacity: 30%;
 }
 
 #octo_rate:hover {

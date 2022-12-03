@@ -43,7 +43,7 @@ function Docs({user}) {
 
 	return (
 		<div className="docs">
-			<h3 style={{display: 'flex', justifyContent: 'center'}}>
+			<h3 className='text_center'>
 				Репозитории пользователя:
 			</h3>
 			{children}

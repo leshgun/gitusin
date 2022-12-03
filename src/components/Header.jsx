@@ -39,27 +39,16 @@ function Header({stateUser, stateTheme, defaultUser='leshgun'}) {
 	function switchUser(newUser=inputValue) {
 		if (newUser && newUser !== user) {
 			setUser(newUser);
-			// changeUser(newUser);
 			setInputValue('');
 		}
 	}
 
 	function switchTheme() {
-		// console.log('Prefers is on:', window.matchMedia('(prefers-color-scheme)').matches);
-		// console.log('Prefers is light:', window.matchMedia('(prefers-color-scheme: light)').matches);
-		// console.log('Prefers is dark:', window.matchMedia('(prefers-color-scheme: dark)').matches);
-		let app = document.getElementById("App");
-		console.log('Attribute theme:', app.getAttribute("theme"));
-		console.log("Theme:", theme);
 		if (theme === "light") {
-			// app.setAttribute("theme", "dark");
 			setTheme("dark")
 		} else {
-			// app.setAttribute("theme", "light");
 			setTheme("light")
 		}
-		// document.getElementById("App").setAttribute("theme", "dark");
-		// document.getElementById('App').style.colorScheme = 'dark';
 	}
 
 	return (
