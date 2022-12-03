@@ -2,22 +2,33 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-  }
+}
   
-  .flex-row, .fl-fd-c {
+.flex-column, .fl-fd-c {
 	display: flex;
 	flex-direction: column;
-  }
+}
+
+.flex-row, .fl-fd-r {
+	display: flex;
+	flex-direction: row;
+}
   
-  .flex-justify-sb, .fl-jc-sb {
+.flex-justify-sb, .fl-jc-sb {
 	display: flex;
 	justify-content: space-between;
-  }
+}
   
-  .gap-1 {
+.gap-1 {
 	gap: 1rem;
-  }
+}
   
-  .gap-2 {
+.gap-2 {
 	gap: 2rem;
-  }
+}
+
+@media screen and (max-width: 400px) {
+	.flex-row, .fl-fd-r {
+		flex-direction: column;
+	}
+}

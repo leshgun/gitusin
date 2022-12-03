@@ -21,16 +21,16 @@ function MySettings({settings, setSettings}) {
 	}
 
 	function clToLocCl(str, cl) {
-		return str.split(' ').reduce((x, y) => cl[x] + ' ' + cl[y]);
+		return str.split(' ').reduce((x, y) => x + ' ' + cl[y], '');
 	}
 
 	return (
 		<MyModal visible={settings} setVisible={setSettings}>
-			<div className={clToLocCl('fl-fd-c gap-1', cl)}>
+			<div className={clToLocCl("fl-fd-c gap-1", cl)}>
 				<div className={cl['title']}>Настройки</div>
 				<div className={cl['content']}>
 					<form onSubmit={(e) => onFormSubmit(e, changePat)}>
-						<div className={cl['fl-jc-sb']}>
+						<div className={clToLocCl("fl-jc-sb fl-fd-r gap-1", cl)}>
 							<div>PAT:</div>
 							<MyInput
 								placeholder={localStorage.getItem('pat') || defaultPat}
