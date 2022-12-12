@@ -24,8 +24,13 @@ function App() {
 
 	useEffect(() => {
 		initTime();
-		if (window.matchMedia("(prefers-color-scheme: dark)").matches)
-			setTheme('dark');
+		let theme_item = localStorage.getItem("theme");
+		let theme_pcs_dark = window.matchMedia("(prefers-color-scheme: dark)")
+			.matches;
+		if (theme_item)
+			setTheme(theme_item);
+		else if (theme_pcs_dark)
+			setTheme("dark")
 	}, []);
 
 	useEffect(() => {

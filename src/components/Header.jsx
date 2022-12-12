@@ -63,7 +63,7 @@ function Header({stateUser, stateTheme, defaultUser='leshgun'}) {
 				</div>
 				<div id="options">
 					<MyButton 
-						addClasses='secondary'
+						inner_class='secondary'
 						type='submit'
 						onClick={() => toggleVisible(options, setOptions)}
 					>
@@ -107,7 +107,7 @@ function Header({stateUser, stateTheme, defaultUser='leshgun'}) {
 					/>
 					{/* <button onClick={e => onChange(user)}>Get</button> */}
 					<MyButton 
-						addClasses='primary'
+						inner_class='primary'
 						type='submit'
 						// onClick={() => switchUser()}
 					>Get</MyButton>

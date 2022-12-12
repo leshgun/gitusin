@@ -6,15 +6,24 @@
   align-items: center;
   background-color: var(--color-canvas-default);
   color: var(--color-fg-default);
+  overflow-x: hidden;
   overflow-y: overlay;
   height: 100%;
   padding: 0 20px;
+}
+
+*[hidden="true"] {
+  display: none !important;
 }
 
 .wrapper {
   width: 1000px;
   height: 100%;
   /* background-color: aquamarine; */
+}
+
+.hidden {
+  display: none !important;
 }
 
 @media screen and (max-width: 1000px) {
@@ -57,6 +66,7 @@
 
 #App[theme="light"], #App[theme="light"] .markdown-body {
   color-scheme: light;
+  --color-modal-background: rgba(0,0,0,.3);
   --color-scrollbar-background: #e3e3e3;
 	--color-thumb-background: #aaa;
 	--color-thumb-background-hover: #888;
@@ -508,6 +518,7 @@
   --color-thumb-backgrounf: #888;
 	--color-thumb-background-hover: #aaa;
 	--color-thumb-background-active: #e3e3e3; */
+  --color-modal-background: rgba(255,255,255,.2);
   --color-scrollbar-background: var(--color-scale-gray-6);
   --color-thumb-background: var(--color-scale-gray-5);
 	--color-thumb-background-hover: var(--color-scale-gray-4);

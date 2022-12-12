@@ -10,12 +10,22 @@ import MyLoading from '../UI/loading/MyLoading';
 import docFormat from '../utils/docFormat';
 import mprint from '../utils/myPrint';
 
+
+function get_all_properties(o, e = o, props = []) {
+	if (e.__proto__) 
+		get_all_properties(o, e.__proto__, 
+			props.concat(Object.getOwnPropertyNames(e))) 
+	else 
+		Object.fromEntries(
+			[...new Set(props.concat(Object.getOwnPropertyNames(e)))]
+			.map(prop => [prop, o[prop]]))
+}
+
+
 function Doc({doc, ...props}) {
 
 	const [docContent, setDocContent] = useState('');
 	const [btnName, setBtnName] = useState('More...');
-	const [btnHide, setBtnHide] = useState(false);
-	const [docContentHide, setDocContentHide] = useState(true);
 	const {setRate} = useContext(MyContext)
 
 	async function getData(path) {
@@ -47,59 +57,56 @@ function Doc({doc, ...props}) {
 	}
 
 	async function getContentFromDoc() {
-		const docEl = document.getElementById(doc.id);
+		const app = document.getElementById("App");
+		const doc_html = document.getElementById(doc.id);
+		const doc_loading = doc_html.getElementsByClassName("loading")[0];
+		const doc_button = doc_html.getElementsByClassName("button_more")[0];
+		const doc_content = doc_html.getElementsByClassName("doc__content")[0];
 		
-		if (docEl.getAttribute('requested') == null) {
-			docEl.toggleAttribute('requested');
-			setBtnHide(true);
+		if (doc_html.getAttribute('requested') == null) {
+			doc_html.toggleAttribute('requested');
+			doc_loading.classList.toggle("hidden");
+			doc_button.classList.toggle("hidden");
 			const docs = await findDocs();
 			if (docs && docs.length) {
 				await getData(docs[0]);
-				setBtnHide(false);
-				setDocContentHide(!docContentHide);
+				doc_button.classList.toggle("hidden");
+				doc_html.toggleAttribute("content_hide");
+				doc_content.toggleAttribute("hidden");
 			}
+			doc_loading.classList.toggle("hidden");
 		} else {
-			setDocContentHide(!docContentHide);
-			if (!docContentHide && window.pageYOffset > docEl.offsetTop)
-				window.scrollTo(0, docEl.offsetTop - 16);
+			doc_content.toggleAttribute("hidden");
+			doc_html.toggleAttribute("content_hide");
 		}
+
+		if (app.scrollTop > doc_html.offsetTop) 
+			app.scrollTop = doc_html.offsetTop - 16;
+
 		setBtnName((btnName === 'More...') ? 'Less' : 'More...');
 	}
 
+
 	return (
-		<div className='doc' id={doc.id} isconthide={docContentHide ? "true" : "false"}>
-			{/* <div className='sticky'>
-				<div className='sticky__child'>
-					<p>Loh...</p>
-				</div>
-			</div> */}
+		<div className='doc' id={doc.id}>
 			<div className='doc__title'>
-				<a
-					target="_blank"
+				<a target="_blank"
 					rel="noopener noreferrer"
 					className='doc__name'
 					href={doc.html_url}
 				>{doc.name}</a>
-				{/* <button onClick={()=>getContentFromDoc()}>{btnName}</button> */}
-				{
-					btnHide
-						? 	<MyLoading size='md'/>
-						: 	<MyButton 
-								addClasses='outline' 
-								onClick={()=>getContentFromDoc()}
-							>
-								{btnName}
-							</MyButton>
-				}
+				<MyLoading inner_class="md" outer_class="loading hidden"/>
+				<MyButton outer_class="button_more" 
+					onClick={()=>getContentFromDoc()}
+					>{btnName}</MyButton>
 			</div>
-			{docContentHide
-				? <div className='doc__content'></div>
-				: <div className='doc__content markdown-body dark-scheme'>
-						<ReactMarkdown children={docContent} remarkPlugins={[remarkGfm]} />
-					</div>
-			}
+			<div className="doc__content markdown-body" hidden>
+				<ReactMarkdown children={docContent} 
+					remarkPlugins={[remarkGfm]} />
+			</div>
 		</div>
 	)
+
 }
 
 export default Doc

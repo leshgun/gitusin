@@ -40,7 +40,7 @@
   border: none;
 } */
 
-.doc[isconthide=false] .doc__title {
+.doc[content_hide] .doc__title {
   border-bottom: 1px solid var(--color-border-default);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
