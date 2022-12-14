@@ -1,9 +1,16 @@
 .dropdown {
 	display: none;
+	position: relative;
+	z-index: 101;
 }
 
 .dropdown__content {
 	position: absolute;
+	z-index: 102;
+}
+
+.dropdown__modal {
+	z-index: 100;
 }
 
 .active {
@@ -46,7 +53,6 @@
 	margin-bottom: 0;
 	position: absolute;
 	/* top: 100%; */
-	z-index: 100;
 	width: 160px;
 	padding-top: 4px;
 	padding-bottom: 4px;
