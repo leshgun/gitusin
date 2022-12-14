@@ -25,7 +25,10 @@ function MySettings({settings, setSettings}) {
 	}
 
 	return (
-		<MyModal visible={settings} setVisible={setSettings}>
+		<MyModal 
+			visible={settings} setVisible={setSettings}
+			show_modal_content={true}	
+		>
 			<div className={clToLocCl("fl-fd-c gap-1", cl)}>
 				<div className={cl['title']}>Настройки</div>
 				<div className={cl['content']}>

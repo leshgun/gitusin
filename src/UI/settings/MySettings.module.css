@@ -16,7 +16,7 @@
   
 .flex-justify-sb, .fl-jc-sb {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 }
   
 .gap-1 {

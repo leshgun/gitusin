@@ -10,6 +10,10 @@
 	padding-right: 10px;
 }
 
+.transparent {
+	background: none;
+}
+
 .myModal__content {
 	padding: 1.5rem;
 	background: var(--color-canvas-default);

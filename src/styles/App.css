@@ -16,14 +16,14 @@
   display: none !important;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .wrapper {
   width: 1000px;
   height: 100%;
   /* background-color: aquamarine; */
-}
-
-.hidden {
-  display: none !important;
 }
 
 @media screen and (max-width: 1000px) {
