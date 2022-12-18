@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/gitusin/static/css/main.42edc586.css",
+    "main.js": "/gitusin/static/js/main.7a097adb.js",
+    "index.html": "/gitusin/index.html",
+    "main.42edc586.css.map": "/gitusin/static/css/main.42edc586.css.map",
+    "main.7a097adb.js.map": "/gitusin/static/js/main.7a097adb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.42edc586.css",
+    "static/js/main.7a097adb.js"
+  ]
+}
