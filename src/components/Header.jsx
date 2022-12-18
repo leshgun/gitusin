@@ -1,49 +1,44 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 
 // import styles to be used (solid, regular, brands)
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {solid} from '@fortawesome/fontawesome-svg-core/import.macro'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"
 
 import MyButton from "../UI/button/MyButton"
 import MyInput from "../UI/input/MyInput"
 import MyDropDown from "../UI/dropdown/MyDropDown"
+import MySettings from "../UI/settings/MySettings"
+import { MyContext } from '../App'
 
-import {onFormSubmit, toggleVisible} from '../utils/MyTools'
-
+import { onFormSubmit, toggleVisible } from "../utils/MyTools"
 import "../styles/Header.css"
-import MySettings from '../UI/settings/MySettings'
-
-import { useContext } from 'react';
-import { MyContext } from '../App';
 
 
-function Header({stateUser, stateTheme, defaultUser='leshgun'}) {
+
+function clear_local_storage() {
+	localStorage.clear();
+	window.location.reload();
+}
+
+
+function Header({stateUser, stateTheme}) {
 
 	const [inputValue, setInputValue] = useState('');
 	const [options, setOptions] = useState(false);
 	const [settings, setSettings] = useState(false);
+	const { default_user } = useContext(MyContext)
 	const [user, setUser] = stateUser;
 	const [theme, setTheme] = stateTheme;
 
 
-	useEffect(() => {
-		if (!localStorage.getItem('pat'))
-			localStorage.setItem('pat', '');
-	}, [])
-	
-	function clearStorage() {
-		localStorage.clear();
-		window.location.reload();
-	}
-
-	function switchUser(newUser=inputValue) {
-		if (newUser && newUser !== user) {
-			setUser(newUser);
+	function switch_target_user ( username = inputValue ) {
+		if (username && username !== user) {
+			setUser(username);
 			setInputValue('');
 		}
 	}
 
-	function switchTheme() {
+	function switch_theme () {
 		if (theme === "light") {
 			setTheme("dark")
 		} else {
@@ -53,23 +48,33 @@ function Header({stateUser, stateTheme, defaultUser='leshgun'}) {
 
 	return (
 		<header>
+
 			<div className="header__left-side">
+				
+				{/* Logo */}
 				<div className="home">
 					<FontAwesomeIcon 
 						icon={solid('house-chimney')}
 						size="xl"
-						onClick={() => switchUser(defaultUser)}
+						onClick={() => switch_target_user(default_user)}
 					/>
 				</div>
+
 				<div id="options">
 					<MyButton 
 						inner_class='secondary'
 						type='submit'
 						onClick={() => toggleVisible(options, setOptions)}
-					>
+						>
 						<div className='dd__button'>
-							Options
-							<i><FontAwesomeIcon icon={solid("caret-down")} size="xs" /></i>
+							<i><FontAwesomeIcon 
+								icon = {solid("bars")}
+								size = "1x"
+							/></i>
+							{/* Options
+							<i><FontAwesomeIcon 
+								icon={solid("caret-down")} size="xs" 
+							/></i> */}
 						</div>
 					</MyButton>
 					<MyDropDown
@@ -86,18 +91,25 @@ function Header({stateUser, stateTheme, defaultUser='leshgun'}) {
 						>settings</div>
 						<span 
 							key={'refresh'}
-							onClick={() => clearStorage()}
+							onClick={() => clear_local_storage()}
 						>refresh</span>
 					</MyDropDown>
 					<MySettings
 						key='settings'
-						settings={settings}
-						setSettings={setSettings}
+						settings = { settings }
+						setSettings = { setSettings }
+						startup_user = { default_user }
 					/>
 				</div>
+
 			</div>
+
 			<div className="header__right-side">
-				<form onSubmit={(e) => onFormSubmit(e, switchUser)}>
+
+				{/**
+				 * 	Form for changing the target user by button or "Enter"-key
+				 */}
+				<form onSubmit={(e) => onFormSubmit(e, switch_target_user)}>
 					<MyInput 
 						placeholder={user}
 						type="text"
@@ -105,21 +117,22 @@ function Header({stateUser, stateTheme, defaultUser='leshgun'}) {
 						value={inputValue}
 						onChange={e => setInputValue(e.target.value)}
 					/>
-					{/* <button onClick={e => onChange(user)}>Get</button> */}
 					<MyButton 
 						inner_class='primary'
 						type='submit'
-						// onClick={() => switchUser()}
 					>Get</MyButton>
 				</form>
-				<div className="dark_theme">
+
+				<div className="theme_switcher">
 					<FontAwesomeIcon
 						icon={solid("moon")}
 						size="xl"
-						onClick={() => switchTheme()}
+						onClick={() => switch_theme()}
 					/>
 				</div>
+
 			</div>
+
 		</header>
 	)
 }

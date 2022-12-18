@@ -64,6 +64,19 @@
 
 /****************** Scrollbar ******************/
 
+/****************** Media ******************/
+
+@media screen and (max-width: 350px) {
+  #App {
+    padding-left: 10px;
+    padding-right: 20px;
+  }
+}
+
+/****************** Media ******************/
+
+/****************** Colors (light) ******************/
+
 #App[theme="light"], #App[theme="light"] .markdown-body {
   color-scheme: light;
   --color-modal-background: rgba(0,0,0,.3);
@@ -511,6 +524,10 @@
   --color-scale-coral-8: #691105;
   --color-scale-coral-9: #510901;
 }
+
+/****************** Colors (light) ******************/
+
+/****************** Colors (dark) ******************/
 
 #App[theme="dark"], #App[theme="dark"] .markdown-body {
   color-scheme: dark;
@@ -964,7 +981,7 @@
   --color-scale-coral-9: #460701;
 }
 
-
+/****************** Colors (dark) ******************/
 
 
 

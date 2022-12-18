@@ -4,11 +4,14 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
 import { MyContext } from '../App';
-import DocService from '../API/DocService';
 import MyButton from '../UI/button/MyButton';
 import MyLoading from '../UI/loading/MyLoading';
+
+import DocService from '../API/DocService';
 import docFormat from '../utils/docFormat';
-import mprint from '../utils/myPrint';
+
+import "../styles/Doc.css"
+
 
 
 function get_all_properties(o, e = o, props = []) {
@@ -21,69 +24,74 @@ function get_all_properties(o, e = o, props = []) {
 			.map(prop => [prop, o[prop]]))
 }
 
+function hide_html_elements (elements) {
+	elements.map((elem) => elem.classList.toggle("hidden"));
+}
 
+
+
+/**
+ * 	"Readme" file of selected user
+ */
 function Doc({doc, ...props}) {
 
 	const [docContent, setDocContent] = useState('');
 	const [btnName, setBtnName] = useState('More...');
-	const {setRate} = useContext(MyContext)
+	const { update_ratelimit } = useContext(MyContext)
 
-	async function getData(path) {
+	// Get data from the "Readme" file
+	async function get_data (path) {
+
 		let response = await DocService.getDoc(
 			doc.full_name + "/contents/" + path
 		);
-		if (response) {
+
+		update_ratelimit();
+
+		if (response)
 			response = docFormat(doc, response);
-			if (response) setDocContent(response);
-		}
-		setRate(localStorage.getItem('OctoRate') || '')
+		
+		return response || ''
+
 	}
 
-	async function findDocs() {
-		const regex = /readme/i;
-		let response = await DocService.getRepo (
-			doc.full_name + "/contents/"
-		);
-		if (response.data) {
-			response = response.data.map((x) => x.name);
-			mprint('Docs found:', response);
-			response = response.filter((x) => regex.test(x))
-		} else {
-			response = null;
-		}
-		// console.log('Docs filtered:', response);
-		setRate(localStorage.getItem('OctoRate') || '')
-		return response
-	}
+	// Load and show the first "Readme" file from the repository
+	async function load_docs () {
 
-	async function getContentFromDoc() {
 		const app = document.getElementById("App");
 		const doc_html = document.getElementById(doc.id);
 		const doc_loading = doc_html.getElementsByClassName("loading")[0];
 		const doc_button = doc_html.getElementsByClassName("button_more")[0];
 		const doc_content = doc_html.getElementsByClassName("doc__content")[0];
 		
+		// Checking if the file has already been requested
 		if (doc_html.getAttribute('requested') == null) {
+
 			doc_html.toggleAttribute('requested');
-			doc_loading.classList.toggle("hidden");
-			doc_button.classList.toggle("hidden");
-			const docs = await findDocs();
+			hide_html_elements([doc_button, doc_loading]);
+
+			const docs = await DocService.get_readme_docs(doc.full_name);
+			update_ratelimit();
+
 			if (docs && docs.length) {
-				await getData(docs[0]);
-				doc_button.classList.toggle("hidden");
+				setDocContent(await get_data(docs[0]));
 				doc_html.toggleAttribute("content_hide");
 				doc_content.toggleAttribute("hidden");
+				doc_button.classList.toggle("hidden");
 			}
 			doc_loading.classList.toggle("hidden");
+			
 		} else {
 			doc_content.toggleAttribute("hidden");
 			doc_html.toggleAttribute("content_hide");
 		}
 
+		// Scroll page up when content is hidden
 		if (app.scrollTop > doc_html.offsetTop) 
 			app.scrollTop = doc_html.offsetTop - 16;
 
 		setBtnName((btnName === 'More...') ? 'Less' : 'More...');
+
 	}
 
 
@@ -97,7 +105,7 @@ function Doc({doc, ...props}) {
 				>{doc.name}</a>
 				<MyLoading inner_class="md" outer_class="loading hidden"/>
 				<MyButton outer_class="button_more" 
-					onClick={()=>getContentFromDoc()}
+					onClick={()=>load_docs()}
 					>{btnName}</MyButton>
 			</div>
 			<div className="doc__content markdown-body" hidden>

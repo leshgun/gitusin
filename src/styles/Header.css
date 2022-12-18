@@ -37,7 +37,7 @@ header {
   gap: .5rem;
 }
 
-.dark_theme {
+.theme_switcher {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,7 +90,7 @@ header {
   }
   .header__left-side .dd__button {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
   }
   .header__right-side, .header__right-side form {
     flex-direction: column;

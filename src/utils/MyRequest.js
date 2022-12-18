@@ -17,15 +17,16 @@ class MyOcto {
 	})
 
 	static async setRate(rate) {
-		const newRate = `${rate.used}/${rate.limit}`
-		localStorage.setItem('OctoRate', newRate);
+		localStorage.setItem('ratelimit', `${rate.used}/${rate.limit}`);
+		localStorage.setItem("ratelimit_used", rate.used);
+		localStorage.setItem("ratelimit_limit", rate.limit);
 	}
 
 	static async getRate() {
 		let octoRate = await this.octokit.request('GET /rate_limit', {});
-		octoRate = octoRate.data.rate;
+		return octoRate.data.rate || '';
 		// console.log('Limit:', octoRate.data.rate);
-		this.setRate(octoRate);
+		// this.setRate(octoRate);
 	}
 
 	static async GET(url, headers) {
@@ -95,5 +96,11 @@ export default class MyRequest {
 		// MyOcto.getRate();
 		return response;
     }
+
+	static async get_ratelimit() {
+		const response = await MyOcto.getRate();
+		MyOcto.setRate(response);
+		return response;
+	}
 
 }

@@ -1,4 +1,4 @@
-#octo_rate {
+#ratelimit {
 	position: fixed;
 	cursor: default;
 	right: 10px;
@@ -11,6 +11,6 @@
 	opacity: 30%;
 }
 
-#octo_rate:hover {
+#ratelimit:hover {
 	opacity: 100%;
 }
