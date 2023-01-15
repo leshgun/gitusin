@@ -1,4 +1,5 @@
 {
+  "homepage": "https://leshgun.github.io/gitusin",
   "name": "gitusin",
   "version": "0.1.0",
   "private": true,
@@ -11,6 +12,7 @@
     "babel-plugin-macros": "^3.1.0",
     "buffer": "^6.0.3",
     "emojione": "^4.5.0",
+    "gh-pages": "^4.0.0",
     "github-markdown-css": "^5.1.0",
     "octokit": "^2.0.7",
     "react": "^18.2.0",
@@ -21,6 +23,8 @@
     "remark-gfm": "^3.0.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
