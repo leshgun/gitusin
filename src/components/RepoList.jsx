@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
+
+import { useDispatch, useSelector } from 'react-redux';
+import { increment, updateRatelimit } from '../store/slice-rate-counter';
 
 import Doc from "./Doc"
-import { MyContext } from '../App';
 
 import DocService from '../API/DocService';
 import MyLoading from "../UI/loading/MyLoading";
@@ -16,9 +18,10 @@ import "../styles/DocList.css"
  */
 function RepoList({user}) {
 
+	const dispatch = useDispatch();
+	const default_error = useSelector(state => state.default_error);
 	const [docs, setDocs] = useState([]);
 	const [requestError, setRequestError] = useState(false);
-	const {update_ratelimit, default_error} = useContext(MyContext);
 	const loading = <MyLoading />;
 	let children;
 
@@ -31,8 +34,9 @@ function RepoList({user}) {
 			const response = await DocService.get_repos(username);
 		
 			// Update the counter of possible remaining requests
-			update_ratelimit();
-		
+			// update_ratelimit();
+			dispatch(updateRatelimit());
+
 			if (response.data) {
 				if (response.data.length) setDocs(response.data);
 				setRequestError(<h5>There is no public repos...</h5>);

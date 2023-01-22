@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 
 // import styles to be used (solid, regular, brands)
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -8,7 +9,6 @@ import MyButton from "../UI/button/MyButton"
 import MyInput from "../UI/input/MyInput"
 import MyDropDown from "../UI/dropdown/MyDropDown"
 import MySettings from "../UI/settings/MySettings"
-import { MyContext } from '../App'
 
 import { onFormSubmit, toggleVisible } from "../utils/MyTools"
 import "../styles/Header.css"
@@ -26,9 +26,9 @@ function Header({stateUser, stateTheme}) {
 	const [inputValue, setInputValue] = useState('');
 	const [options, setOptions] = useState(false);
 	const [settings, setSettings] = useState(false);
-	const { default_user } = useContext(MyContext)
 	const [user, setUser] = stateUser;
 	const [theme, setTheme] = stateTheme;
+	const default_user = useSelector(state => state.defaultConfig.username);
 
 
 	function switch_target_user ( username = inputValue ) {
@@ -36,6 +36,7 @@ function Header({stateUser, stateTheme}) {
 			setUser(username);
 			setInputValue('');
 		}
+		console.log("Loh:", username, user)
 	}
 
 	function switch_theme () {

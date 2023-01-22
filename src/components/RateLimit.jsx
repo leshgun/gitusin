@@ -1,14 +1,14 @@
-import React, { useContext } from 'react'
-import { MyContext } from '../App';
+import React from 'react'
 
-import DocService from "../API/DocService";
 import "../styles/RateLimit.css"
+import { useSelector } from 'react-redux';
 
 
 
 function RateLimit() {
+	
+	const rete_counter = useSelector(state => state.rateCounter);
 
-	const {rate, setRate, update_ratelimit} = useContext(MyContext);
 	
 	// // Force update ratelimit 
 	// async function update_ratelimit ({force = false}) {
@@ -21,10 +21,10 @@ function RateLimit() {
 	return (
 		<div 
 			id = "ratelimit"
-			onClick = {() => { update_ratelimit(true) }}
+			// onClick = {() => { update_ratelimit(true) }}
 			title = { help_text }
 		>
-			{rate}
+			{`${rete_counter.used}/${rete_counter.limit}`}
 		</div>
 	)
 }

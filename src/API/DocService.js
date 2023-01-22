@@ -1,6 +1,3 @@
-import { useContext } from 'react'
-// import { MyContext } from '../App';
-
 import emojione from 'emojione';
 
 import mprint from '../utils/myPrint';
@@ -13,11 +10,6 @@ function base64_to_utf8(data) {
 }
 
 export default class DocService {
-
-	static set_ratelimit (rate) {
-		// const {setRate} = useContext(MyContext);
-		// setRate(rate);
-	}
 
 	// Get ratelimit of the requests 
 	static get_ratelimit (force=false) {
@@ -32,12 +24,9 @@ export default class DocService {
 
 	// Get all repositories of the current user
 	static async get_repos (username) {
-		const response = await MyRequest.GET({
+		return await MyRequest.GET({
 			url: `/users/${username}/repos`
 		});
-		
-		// this.set_ratelimit
-		return response
 	}
 
 	// Get all docs from given repository
