@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
-import { updateRatelimit } from '../store/slice-rate-counter';
+// import { updateRatelimit } from '../store/slice-rate-counter';
 import MyButton from '../UI/button/MyButton';
 import MyLoading from '../UI/loading/MyLoading';
 
@@ -47,7 +47,7 @@ function Doc({doc, ...props}) {
 			doc.full_name + "/contents/" + path
 		);
 
-		dispatch(updateRatelimit());
+		// dispatch(updateRatelimit());
 
 		if (response)
 			response = docFormat(doc, response);
@@ -72,7 +72,7 @@ function Doc({doc, ...props}) {
 			hide_html_elements([doc_button, doc_loading]);
 
 			const docs = await DocService.get_readme_docs(doc.full_name);
-			dispatch(updateRatelimit());
+			// dispatch(updateRatelimit());
 
 			if (docs && docs.length) {
 				setDocContent(await get_data(docs[0]));

@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { setName, setStartupUser } from "store/slice-user";
 
 // import styles to be used (solid, regular, brands)
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"
 
-import MyButton from "../UI/button/MyButton"
-import MyInput from "../UI/input/MyInput"
-import MyDropDown from "../UI/dropdown/MyDropDown"
-import MySettings from "../UI/settings/MySettings"
+import MyButton from "UI/button/MyButton"
+import MyInput from "UI/input/MyInput"
+import MyDropDown from "UI/dropdown/MyDropDown"
+import MySettings from "UI/settings/MySettings"
 
 import { onFormSubmit, toggleVisible } from "../utils/MyTools"
 import "../styles/Header.css"
@@ -21,22 +23,24 @@ function clear_local_storage() {
 }
 
 
-function Header({stateUser, stateTheme}) {
+function Header({stateTheme}) {
+
+	const user = useSelector(state => state.user.name);
+	const default_user = useSelector(state => state.user.startup);
+	const dispatch = useDispatch();
 
 	const [inputValue, setInputValue] = useState('');
 	const [options, setOptions] = useState(false);
 	const [settings, setSettings] = useState(false);
-	const [user, setUser] = stateUser;
 	const [theme, setTheme] = stateTheme;
-	const default_user = useSelector(state => state.defaultConfig.username);
 
 
 	function switch_target_user ( username = inputValue ) {
 		if (username && username !== user) {
-			setUser(username);
+			// setUser(username);
+			dispatch(setName(username));
 			setInputValue('');
 		}
-		console.log("Loh:", username, user)
 	}
 
 	function switch_theme () {
@@ -100,6 +104,9 @@ function Header({stateUser, stateTheme}) {
 						settings = { settings }
 						setSettings = { setSettings }
 						startup_user = { default_user }
+						setStartupUser = {
+							username => dispatch(setStartupUser(username))
+						}
 					/>
 				</div>
 

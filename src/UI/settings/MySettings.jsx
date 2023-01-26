@@ -34,6 +34,7 @@ function MySettings({settings, setSettings, ...props}) {
 		console.log("New startup user:", startupUser);
 		console.log("Props:", props);
 		localStorage.setItem("startup_user", startupUser);
+		if (props.setStartupUser) props.setStartupUser(startupUser);
 		setStartupUser('');
 	}
 

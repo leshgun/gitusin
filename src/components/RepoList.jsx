@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux';
-import { increment, updateRatelimit } from '../store/slice-rate-counter';
+import { updateRatelimit } from '../store/slice-rate-counter';
 
 import Doc from "./Doc"
 
@@ -16,7 +16,9 @@ import "../styles/DocList.css"
 /**
  * 	List of the public repositories of the target user
  */
-function RepoList({user}) {
+function RepoList() {
+
+	const user = useSelector(state => state.user.name);
 
 	const dispatch = useDispatch();
 	const default_error = useSelector(state => state.default_error);
@@ -35,7 +37,7 @@ function RepoList({user}) {
 		
 			// Update the counter of possible remaining requests
 			// update_ratelimit();
-			dispatch(updateRatelimit());
+			// dispatch(updateRatelimit());
 
 			if (response.data) {
 				if (response.data.length) setDocs(response.data);
@@ -45,7 +47,7 @@ function RepoList({user}) {
 				setRequestError(<MyError response={response} />);
 		}
 		fetch_docs(user)
-	}, [user]);
+	}, [user, dispatch]);
 
 
 	if (docs.length) 

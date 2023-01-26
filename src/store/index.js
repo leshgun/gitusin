@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit"
-import rateCounterReducer from "./slice-rate-counter";
-import defaultConfig from "./slice-default-config";
+import defaults from "./slice-defaults";
+import user from "./slice-user";
+import rateCounter from "./slice-rate-counter";
 
 
 
 export default configureStore({
     reducer: {
-        defaultConfig: defaultConfig,
-        rateCounter: rateCounterReducer
+        defaults: defaults,
+        user: user,
+        rateCounter: rateCounter
     }
 });

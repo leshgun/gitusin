@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Provider, useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
 
 import store from "./store"
 
@@ -19,8 +19,8 @@ import { initTime } from './utils/myPrint';
  */
 function App() {
 
-	const default_user = useSelector(state => state.defaultConfig.username);
-	const [user, setUser] = useState(default_user);
+	// const user = useSelector(state => state.defaultConfig.username);
+	// const [user, setUser] = useState(default_user);
 	const [rate, setRate] = useState('');
 	const [theme, setTheme] = useState('light')
 
@@ -50,12 +50,12 @@ function App() {
 		<div id="App">
 			<Provider store={store}>
 				<Header
-					stateUser={[user, setUser]}
+					// stateUser={[user, setUser]}
 					stateTheme={[theme, setTheme]}
 				/>
 				<div className='wrapper'>
 					<RepoList
-						user={user}
+						// user={user}
 					/>
 				</div>
 				{true
