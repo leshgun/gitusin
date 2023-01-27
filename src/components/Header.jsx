@@ -8,12 +8,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"
 
 import MyButton from "UI/button/MyButton"
-import MyInput from "UI/input/MyInput"
+
 import MyDropDown from "UI/dropdown/MyDropDown"
 import MySettings from "UI/settings/MySettings"
 
-import { onFormSubmit, toggleVisible } from "../utils/MyTools"
+import { toggleVisible } from "../utils/MyTools"
 import "../styles/Header.css"
+import ThemeSwitcher from './ThemeSwitcher';
+import UserSwither from './UserSwither';
 
 
 
@@ -23,45 +25,34 @@ function clear_local_storage() {
 }
 
 
-function Header({stateTheme}) {
+function Header() {
 
-	const user = useSelector(state => state.user.name);
-	const default_user = useSelector(state => state.user.startup);
+	const reducers = useSelector(state => state);
 	const dispatch = useDispatch();
 
-	const [inputValue, setInputValue] = useState('');
+	const startup_user = reducers.user.startup;
+	const user = reducers.user.name;
+
 	const [options, setOptions] = useState(false);
 	const [settings, setSettings] = useState(false);
-	const [theme, setTheme] = stateTheme;
 
 
-	function switch_target_user ( username = inputValue ) {
-		if (username && username !== user) {
-			// setUser(username);
-			dispatch(setName(username));
-			setInputValue('');
-		}
+	function switchToStartupUser() {
+		if (user !== startup_user)
+			dispatch(setName(startup_user));
 	}
 
-	function switch_theme () {
-		if (theme === "light") {
-			setTheme("dark")
-		} else {
-			setTheme("light")
-		}
-	}
 
 	return (
 		<header>
 
 			<div className="header__left-side">
-				
 				{/* Logo */}
 				<div className="home">
 					<FontAwesomeIcon 
 						icon={solid('house-chimney')}
 						size="xl"
-						onClick={() => switch_target_user(default_user)}
+						onClick={() => switchToStartupUser()}
 					/>
 				</div>
 
@@ -103,41 +94,18 @@ function Header({stateTheme}) {
 						key='settings'
 						settings = { settings }
 						setSettings = { setSettings }
-						startup_user = { default_user }
+						startup_user = { startup_user }
 						setStartupUser = {
 							username => dispatch(setStartupUser(username))
 						}
 					/>
 				</div>
-
 			</div>
 
 			<div className="header__right-side">
 
-				{/**
-				 * 	Form for changing the target user by button or "Enter"-key
-				 */}
-				<form onSubmit={(e) => onFormSubmit(e, switch_target_user)}>
-					<MyInput 
-						placeholder={user}
-						type="text"
-						title="Choose user to get info about"
-						value={inputValue}
-						onChange={e => setInputValue(e.target.value)}
-					/>
-					<MyButton 
-						inner_class='primary'
-						type='submit'
-					>Get</MyButton>
-				</form>
-
-				<div className="theme_switcher">
-					<FontAwesomeIcon
-						icon={solid("moon")}
-						size="xl"
-						onClick={() => switch_theme()}
-					/>
-				</div>
+				<UserSwither />
+				<ThemeSwitcher />
 
 			</div>
 

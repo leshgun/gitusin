@@ -2,9 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 
 
 
+function checkLocalStorage() {
+    return localStorage.getItem("startup_user") || false;
+}
+
 const initialState = {
-    name: "leshgun",
-    startup: "leshgun"
+    startup: checkLocalStorage() || "leshgun",
+    name: "",
 }
 
 export const user = createSlice({

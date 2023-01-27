@@ -4,7 +4,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     used: 0,
-    limit: 60
+    limit: 60,
+    help_text: "The number of available GET requests"
 }
 
 export const rateCounter = createSlice({
