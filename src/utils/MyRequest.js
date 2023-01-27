@@ -1,9 +1,10 @@
 import axios from "axios";
 import { Octokit } from 'octokit';
-import mprint from "./myPrint";
+
 
 
 const githubAPI = 'https://api.github.com'
+
 
 
 class MyOcto {

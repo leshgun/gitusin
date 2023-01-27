@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux';
-import { updateRatelimit } from '../store/slice-rate-counter';
+// import { updateRatelimit } from '../store/slice-rate-counter';
 
 import Doc from "./Doc"
 

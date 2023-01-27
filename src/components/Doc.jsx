@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -38,7 +38,7 @@ function Doc({doc, ...props}) {
 
 	const [docContent, setDocContent] = useState('');
 	const [btnName, setBtnName] = useState('More...');
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 
 	// Get data from the "Readme" file
 	async function get_data (path) {
