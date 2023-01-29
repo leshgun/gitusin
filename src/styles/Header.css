@@ -85,7 +85,7 @@ header {
     gap: 1rem;
     width: 100%;
   }
-  #options, #options button {
+  #menu, #menu button {
     width: 100%;
   }
   .header__left-side .dd__button {
