@@ -1,0 +1,17 @@
+.myInput {
+	/* display: table-cell; */
+	/* display: table; */
+    /* width: 100%; */
+    /* max-width: 100%; */
+    /* font-size: inherit; */
+    padding: 5px 12px;
+    font-weight: 400;
+    vertical-align: middle;
+    /* color: var(--color-scale-white); */
+    /* background-color: var(--color-header-search-bg); */
+	color: var(--color-fg-default);
+	background-color: var(--color-canvas-default);
+    border: 1px solid var(--color-header-search-border);
+	border-radius: 6px;
+    box-shadow: none;
+}

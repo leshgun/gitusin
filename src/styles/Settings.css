@@ -1,0 +1,60 @@
+#settings {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.settings_title {
+	display: flex;
+	align-self: center;
+	justify-content: center;
+}
+
+.settings_body {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.settings__item {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+/* .center, .title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+  
+.flex-column, .fl-fd-c {
+	display: flex;
+	flex-direction: column;
+}
+
+.flex-row, .fl-fd-r {
+	display: flex;
+	flex-direction: row;
+}
+  
+.flex-justify-sb, .fl-jc-sb {
+	display: flex;
+	justify-content: space-between;
+}
+  
+.gap-1 {
+	gap: 1rem;
+}
+  
+.gap-2 {
+	gap: 2rem;
+}
+*/
+
+@media screen and (max-width: 400px) {
+	.fsettings__item {
+		flex-direction: column;
+	}
+} 

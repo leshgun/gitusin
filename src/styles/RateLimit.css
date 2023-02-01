@@ -1,0 +1,16 @@
+#ratelimit {
+	position: fixed;
+	cursor: default;
+	right: 10px;
+	bottom: 0;
+	padding: 0.5rem 1rem;
+	/* background-color: var(--color-checks-btn-icon); */
+	background-color: var(--color-scrollbar-background);
+	/* color: var(--color-fg-default); */
+	color: var(--color-thumb-background-active);
+	opacity: 30%;
+}
+
+#ratelimit:hover {
+	opacity: 100%;
+}

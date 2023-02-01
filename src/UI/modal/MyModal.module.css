@@ -1,0 +1,38 @@
+.myModal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: none;
+	background: var(--color-modal-background);
+	z-index: 1000;
+	padding-right: 10px;
+}
+
+.transparent {
+	background: none;
+}
+
+.myModal__content {
+	padding: 1.5rem;
+	background: var(--color-canvas-default);
+	color: var(--color-fg-default);
+	border-radius: 2rem;
+	cursor: default;
+	min-width: 350px;
+}
+
+.active {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+@media screen and (max-width: 400px) {
+	.myModal__content {
+		width: 100%;
+		min-width: auto;
+	}
+}
