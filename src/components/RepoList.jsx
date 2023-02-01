@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux';
-// import { updateRatelimit } from '../store/slice-rate-counter';
+import { updateRateLimit } from "store/slice-rate-counter";
 
 import Doc from "./Doc"
 
@@ -36,8 +36,7 @@ function RepoList() {
 			const response = await DocService.get_repos(username);
 		
 			// Update the counter of possible remaining requests
-			// update_ratelimit();
-			// dispatch(updateRatelimit());
+			dispatch(updateRateLimit());
 
 			if (response.data) {
 				if (response.data.length) setDocs(response.data);
@@ -46,7 +45,7 @@ function RepoList() {
 			else
 				setRequestError(<MyError response={response} />);
 		}
-		fetch_docs(user)
+		if (user) fetch_docs(user)
 	}, [user, dispatch]);
 
 

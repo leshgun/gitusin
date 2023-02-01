@@ -2,6 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 
 
 
+function getLocalStorageRatelimit(state) {
+    return localStorage.getItem("ratelimit_used") || state;
+}
+
 const initialState = {
     used: 0,
     limit: 60,
@@ -15,13 +19,17 @@ export const rateCounter = createSlice({
         increment: state => { state.used += 1 },
         decrement: state => { state.used -= 1 },
         incrementByAmount: (state, action) => { state.used += action.payload },
-        setLimit: (state, action) => { state.limit = action.payload }
+        setLimit: (state, action) => { state.limit = action.payload },
+        updateRateLimit: (state) => { 
+            state.used = getLocalStorageRatelimit(state.used) 
+        }
     }
 });
 
 export const {
     increment, decrement, 
-    incrementByAmount, setLimit
+    incrementByAmount, setLimit,
+    updateRateLimit
     } = rateCounter.actions;
     
 export default rateCounter.reducer;
