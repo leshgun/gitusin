@@ -1,4 +1,29 @@
-.center, .title {
+#settings {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.settings_title {
+	display: flex;
+	align-self: center;
+	justify-content: center;
+}
+
+.settings_body {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.settings__item {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+/* .center, .title {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -26,9 +51,10 @@
 .gap-2 {
 	gap: 2rem;
 }
+*/
 
 @media screen and (max-width: 400px) {
-	.flex-row, .fl-fd-r {
+	.fsettings__item {
 		flex-direction: column;
 	}
-}
+} 

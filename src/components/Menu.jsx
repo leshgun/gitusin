@@ -6,9 +6,11 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"
 
 import { setStartupUser } from "store/slice-user"
 
+import Settings from "components/Settings"
 import MyButton from "UI/button/MyButton"
 import MyDropDown from "UI/dropdown/MyDropDown"
-import MySettings from "UI/settings/MySettings"
+
+// import MySettings from "UI/settings/MySettings"
 
 import { toggleVisible, clear_local_storage } from "../utils/MyTools"
 
@@ -53,8 +55,8 @@ function Menu() {
                         onClick={() => clear_local_storage()}
                         >refresh</span>
             </MyDropDown>
-            
-            <MySettings
+
+            <Settings
                 key='settings'
                 settings = { settingsVisible }
                 setSettings = { setSettingsVisible }
