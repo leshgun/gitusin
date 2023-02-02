@@ -10,7 +10,7 @@ import { onFormSubmit } from "utils/MyTools"
 
 
 
-function UserSwither() {
+function UserSwitcher() {
 
     const [inputValue, setInputValue] = useState('');
 
@@ -51,4 +51,4 @@ function UserSwither() {
     )
 }
 
-export default UserSwither
+export default UserSwitcher

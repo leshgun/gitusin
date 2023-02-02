@@ -9,7 +9,7 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"
 
 import "../styles/Header.css"
 import ThemeSwitcher from './ThemeSwitcher';
-import UserSwither from './UserSwither';
+import UserSwitcher from './UserSwitcher';
 import Menu from './Menu';
 
 
@@ -47,7 +47,7 @@ function Header() {
 
 			<div className="header__right-side">
 
-				<UserSwither />
+				<UserSwitcher />
 				<ThemeSwitcher />
 
 			</div>
